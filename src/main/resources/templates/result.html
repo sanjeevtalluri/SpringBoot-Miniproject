@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html     xmlns:th="http://www.thymeleaf.org">
+<h1 class="text-primary text-center"> Employees Info Report </h1>
+<head>
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"  rel="stylesheet">
+</head>
+<div class="container">
+
+  <div th:if="${listInfo!=null}">
+  <table class="table  table-hover table-bordered  table-stripped table-sm">
+  <tr class="text-primary" >
+   <th>SNO</th>
+   <th>EMP NO</th>
+   <th>ENAME</th>
+   <th>DEPT NO</th>
+   <th>SAL</th>
+   <th>JOB</th>
+   <th>OPERATIONS</th>
+   </tr>
+  
+   <tr th:each="dto:${listInfo}" class="text-primary" >
+   <td th:text="${dto.serialNo}"/>
+    <td th:text="${dto.empNo}"/>
+     <td th:text="${dto.empName}"/>
+    <td th:text="${dto.deptNo}"/>
+  <td th:text="${dto.sal}"/>
+    <td th:text="${dto.job}"/>
+   <td>
+   <a th:href="@{/employee/editEmp.htm(eno=${dto.empNo})}"><img th:src="@{/images/edit.png}" width="50" height="50"></a>
+   <a th:href="@{/employee/deleteEmp.htm(eno=${dto.empNo})}" onclick="return confirm('are u sure to delete ${dto.empName}')"><img th:src="@{/images/delete.png}" width="50" height="50"></a>
+   </td>
+   </tr>
+
+  </table>
+ </div>
+ <span th:unless="${listInfo!=null}"><h2>No Records Available<h2></span>
+
+<span th:if="${registerAtt!=null}">
+ <br>
+ <marquee direction="right"><h1 class="text-primary font-weight-bold" th:text="${registerAtt}"/></marquee>
+ <br>
+</span>
+<span th:if="${deleteAtt!=null}">
+ <br>
+<marquee direction="right"><h1 class="text-primary font-weight-bold" th:text="${deleteAtt}"/></marquee>
+ <br>
+</span>
+<a th:href="@{/employee/registerEmp.htm}"><img th:src="@{/images/add.png}" width="50" height="50"></a>
+<a th:href="@{/employee/welcome.htm}"><img th:src="@{/images/home.png}" width="50" height="50"></a>
+</div>
+</html>

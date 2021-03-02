@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html     xmlns:th="http://www.thymeleaf.org">
+<head>
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"  rel="stylesheet">
+</head>
+<<script type="text/javascript" src="js/validation.js">
+</script>
+<div class="container">
+<h1 class="text-primary text-center"> Employees Edit page </h1>
+<form th:action="@{/employee/editEmp.htm}" th:object="${emp}" method="post" onsubmit="return validate(this)">
+ <table class="table table-responsive " bgcolor="cyan">
+  <tr>
+  <td>EmpNo::</td>
+  <td><input th:field="*{empNo}" readonly="true"/> </td>
+  </tr>
+ <tr>
+  <td>EmpName::</td>
+  <td><input th:field="*{empName}"/><span cssClass="text-danger" th:errors="*{empName}"/><span id="sname"  class="text-danger"/> </td>
+  </tr>
+  <tr>
+  <td>DeptNo::</td>
+  <td>
+   <select th:field="*{deptNo}">
+     <option th:each="dno:${deptAtt}" th:value="${dno}" th:text="${dno}"/>   
+   </select>
+  </td>
+  </tr>
+  <tr>
+  <td>Salary::</td>
+  <td><input th:field="*{sal}"/><span cssClass="text-danger" th:errors="*{sal}"/> <span id="ssal" class="text-danger"/></td>
+  </tr>
+  <tr>
+  <td>Job::</td>
+  <td><input th:field="*{job}"/><span cssClass="text-danger" th:errors="*{job}"/><span id="sjob"  class="text-danger"/> </td>
+  </tr>
+  <tr>
+  <td><input type="submit"> </td>
+  <td><input type="reset"> </td>
+  </tr>
+  <tr><td><input type="hidden" th:field="*{vflag}"/></td></tr>
+ </table>
+
+</form>
+</div>
+</html>
